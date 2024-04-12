@@ -1,0 +1,30 @@
+{
+  "name": "opentrade-examples",
+  "version": "1.0.0",
+  "description": "open trade examples",
+  "main": "index.js",
+  "scripts": {
+    "withdrawScript": "ts-node scripts/withdrawFlexVault.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/opentrade-io/opentrade-examples.git"
+  },
+  "author": "Tom Niermann tom@open-trade.io",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/opentrade-io/opentrade-examples/issues"
+  },
+  "homepage": "https://github.com/opentrade-io/opentrade-examples#readme",
+  "dependencies": {
+    "@types/node": "^20.12.7",
+    "axois": "^0.0.1-security",
+    "dotenv": "^16.4.5",
+    "ethers": "^6.11.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "devDependencies": {
+    "tsconfig-paths": "^4.2.0"
+  }
+}

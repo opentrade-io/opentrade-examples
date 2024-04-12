@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "lib": ["ESNext"],
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "allowSyntheticDefaultImports": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "target": "ES2020",
+    "outDir": "lib",
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "skipLibCheck": true,
+    "strictBindCallApply": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "paths": {
+      "@contracts/*": ["contracts/*"],
+      "@artifacts/*": ["artifacts/*"],
+      "@shared/*": ["../shared/src/*"]
+    }
+  },
+  "include": [
+    "eslintrc.js",
+    "src/**/*.ts",
+    "__tests__/**/*.ts",
+    "scripts",
+    "scripts/**/*.ts",
+    "tasks",
+    "tasks/**/*.ts",
+    "serverless.ts",
+    "hardhat*.ts"
+  ],
+  "exclude": ["node_modules/**/*", ".serverless/**/*", ".webpack/**/*", "_warmup/**/*", ".vscode/**/*"],
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  }
+}
