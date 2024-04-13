@@ -4,7 +4,7 @@
   "description": "open trade examples",
   "main": "index.js",
   "scripts": {
-    "withdrawScript": "ts-node scripts/withdrawFlexVault.ts"
+    "withdrawScript": "ts-node  --transpile-only scripts/withdrawFlexVault.ts"
   },
   "repository": {
     "type": "git",
