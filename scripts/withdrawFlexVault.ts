@@ -1,6 +1,6 @@
 
 import * as dotenv from 'dotenv'
-import { Contract,  JsonRpcProvider,  Wallet } from 'ethers';
+import { Contract, JsonRpcProvider, Wallet } from 'ethers';
 
 
 
@@ -18,8 +18,9 @@ function init() {
   dotenv.config()
 }
 
+// Note the number of shares are at 6 decimals places so 1e6 is 1 share
 
-async function withdrawFlexVault(shares: BigInt) {
+async function withdrawSharesFlexVault(shares: BigInt) {
   const provider = new JsonRpcProvider(URL)
   const wallet = new Wallet(process.env.PRIVATE_KEY as string, provider)
   const flexVaultContract = new Contract(VAULT_ADDRESS, FlexVaultABi, wallet)
@@ -29,8 +30,23 @@ async function withdrawFlexVault(shares: BigInt) {
   console.log('tx', tx)
   const receipt = await tx.wait()
   console.log('receipt', receipt)
- 
+
 }
+// Note the assets (USDC or Eurc) are at 6 decimals places so 1e6 is 1 USDC or Eurc
+async function withdrawUSDCFlexVault(assets: BigInt) {
+  const provider = new JsonRpcProvider(URL)
+  const wallet = new Wallet(process.env.PRIVATE_KEY as string, provider)
+  const flexVaultContract = new Contract(VAULT_ADDRESS, FlexVaultABi, wallet)
+  const shares = await flexVaultContract.convertToShares(assets)
+
+  const tx = await flexVaultContract.requestRedeem(shares)
+  console.log('tx', tx)
+  const receipt = await tx.wait()
+  console.log('receipt', receipt)
+
+}
+
+// Note the assets (USDC or Eurc) are at 6 decimals places so 1e6 is 1 USDC or Eurc
 async function depositFlexVault(assets: BigInt) {
   const provider = new JsonRpcProvider(URL)
   const wallet = new Wallet(process.env.PRIVATE_KEY as string, provider)
@@ -38,15 +54,15 @@ async function depositFlexVault(assets: BigInt) {
   const flexVaultContract = new Contract(VAULT_ADDRESS, FlexVaultABi, wallet)
 
 
-  const tx = await flexVaultContract.deposit(assets,wallet.address)
+  const tx = await flexVaultContract.deposit(assets, wallet.address)
   console.log('tx', tx)
   const receipt = await tx.wait()
   console.log('receipt', receipt)
- 
+
 }
 
 init()
-withdrawFlexVault(1000000n)
+withdrawUSDCFlexVault(1000000n)
   .then()
   .catch((err: Error) => {
     console.error('err', err)
